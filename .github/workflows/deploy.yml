@@ -1,0 +1,27 @@
+name: Deploy Develop Environment
+
+on:
+  push:
+    branches:
+      - deploy
+      - 'deploy/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅ Checkout source code
+        uses: actions/checkout@v3
+      - name: ⚙️ Set up Java 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+#      - name: Install lib
+#        run: ./mvn-install-lib.sh
+#      - name: Replace baseUrl and Build
+#        run: |
+#          sed -i "s#thailife.baseUrl=http://localhost#thailife.baseUrl=http://localhost:8080/mock-service/#g" ./src/main/resources/application.properties
+#          sed -i "s#thailife.accessTokenUrl=/token#thailife.accessTokenUrl=/mock-service/token#g" ./src/main/resources/application.properties
+#          mvn -f pom-war.xml -Pddb clean package -DskipTests
+#      - name: Copy file via ssh password
+#        run: sshpass -p ${{ secrets.TLI_DEV_PASS }} scp -o StrictHostKeyChecking=no ./target/doc-service.war tliadm@tli-dev.appman.co.th:/home/tliadm/apache-tomcat-9.0.36/webapps/
