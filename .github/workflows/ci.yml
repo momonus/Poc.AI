@@ -6,21 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:12-alpine3.14
-        env:
-          POSTGRES_USER: admin
-          POSTGRES_PASSWORD: "1234"
-          POSTGRES_DB: docloc
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
     steps:
       - name: ✅ Checkout source code
         uses: actions/checkout@v3
@@ -29,10 +14,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - name: Install lib and Build
-        run: |
-          ./mvn-install-lib.sh
-          mvn -f pom-war.xml -Pddb clean package -DskipTests
+#      - name: Install lib and Build
+#        run: |
+#          ./mvn-install-lib.sh
+#          mvn -f pom-war.xml -Pddb clean package -DskipTests
       - name: 📦 Cache Maven packages
         uses: actions/cache@v3
         with:
