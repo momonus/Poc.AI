@@ -21,13 +21,11 @@ jobs:
       - name: 🧱 Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: 🔐 Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: 🔐 Login to GHCR
+        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: 🐳 Build and Push Docker Image
+      - name: 🐳 Build & Push Docker Image to GHCR
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/spring-boot-app:dev .
-          docker push ${{ secrets.DOCKER_USERNAME }}/spring-boot-app:dev
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/spring-boot-app:dev
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
