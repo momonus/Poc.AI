@@ -60,7 +60,7 @@ jobs:
 
       - name: 🔍 Run SonarQube Analysis
         run: mvn sonar:sonar \
-          -Dsonar.projectKey=aiservice \
+          -Dsonar.projectKey=momonus \
           -Dsonar.host.url=https://sonarcloud.io/issues?issueStatuses=OPEN,CONFIRMED \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
