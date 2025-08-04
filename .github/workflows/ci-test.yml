@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🔍 Run SonarQube Analysis
-        run: mvn sonar:sonar -Dsonar.projectKey=momonus -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn sonar:sonar -Dsonar.projectKey=momonus -Dsonar.organization=natori -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   coverage-check:
     needs: build-and-test
