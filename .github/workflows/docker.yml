@@ -8,7 +8,7 @@ permissions:
   packages: write  # 💥 ต้องใส่ตรงนี้ ไม่งั้น push ไม่ได้
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,6 @@ jobs:
 
       - name: 🐳 Build & Push Docker Image
         run: |
-          REPO_OWNER=$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')
-          IMAGE_NAME=ghcr.io/$REPO_OWNER/spring-boot-app:dev
+          IMAGE_NAME="ghcr.io/$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')/spring-boot-app:dev"
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
