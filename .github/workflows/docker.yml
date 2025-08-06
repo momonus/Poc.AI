@@ -30,6 +30,6 @@ jobs:
 
       - name: 🐳 Build & Push Docker Image to GHCR
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository }}/spring-boot-app:dev
+          IMAGE_NAME=ghcr.io/${{ github.repository,, }}:dev
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
