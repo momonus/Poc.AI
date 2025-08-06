@@ -30,6 +30,6 @@ jobs:
 
       - name: 🐳 Build & Push Docker Image to GHCR
         run: |
-          IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY,, }:dev
+          IMAGE_NAME=ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]'):dev
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
