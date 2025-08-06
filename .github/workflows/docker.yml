@@ -22,10 +22,10 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: 🔐 Login to GHCR
-        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: 🐳 Build & Push Docker Image to GHCR
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/spring-boot-app:dev
+          IMAGE_NAME=ghcr.io/${{ github.repository }}/spring-boot-app:dev
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
