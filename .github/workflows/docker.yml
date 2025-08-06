@@ -4,12 +4,12 @@ on:
   push:
     branches: [ main ] # หรือเปลี่ยนเป็น branch ที่ต้องการ
 
+permissions:
+  packages: write  # 💥 ต้องใส่ตรงนี้ ไม่งั้น push ไม่ได้
+
 jobs:
   docker:
     runs-on: ubuntu-latest
-
-    permissions:
-      packages: write
 
     steps:
       - name: ✅ Checkout code
