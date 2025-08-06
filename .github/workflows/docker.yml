@@ -29,6 +29,6 @@ jobs:
 
       - name: 🐳 Build & Push Docker Image
         run: |
-          IMAGE_NAME="ghcr.io/$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')/spring-boot-app:dev"
+          IMAGE_NAME="ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/spring-boot-app:dev"
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
